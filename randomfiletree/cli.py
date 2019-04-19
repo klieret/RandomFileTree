@@ -4,7 +4,7 @@ import argparse
 from randomfiletree.core import create_random_tree
 
 
-def cli():
+def parser():
     _ = "Create random directory and file tree."
     parser = argparse.ArgumentParser(description=_)
     parser.add_argument(
@@ -37,7 +37,12 @@ def cli():
         default=None,
         help="Maximal depth of file/directory structure to create"
     )
-    args = parser.parse_args()
+    return parser
+
+
+def cli(args=None):
+    if not args:
+        args = parser().parse_args()
     create_random_tree(
         basedir=args.basedir,
         prob_file=args.prob_file,
