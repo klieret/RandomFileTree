@@ -72,7 +72,7 @@ If the executable is not in your path after installation, you can also use
 
     import randomfiletree
 
-    randomfiletree.create_random_tree("/path/to/basedir", prob_file=2.0, prob_folder=0.5, maxdepth=5, repeat=10)
+    randomfiletree.create_random_tree("/path/to/basedir", nfiles=2.0, nfolders=0.5, maxdepth=5, repeat=4)
 
 
 Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
