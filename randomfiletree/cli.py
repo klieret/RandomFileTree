@@ -13,18 +13,32 @@ def parser():
     )
     parser.add_argument(
         "-d",
-        "--directory-probability",
+        "--directories",
         default=1,
-        dest="prob_folder",
-        help="Probability to create a folder",
+        dest="nfolders",
+        help="Average number of folders to create",
         type=float
     )
     parser.add_argument(
         "-f",
-        "--file-probability",
+        "--files",
         default=1,
-        dest="prob_file",
-        help="Probability to create a file",
+        dest="nfiles",
+        help="Average number of files to create",
+        type=float
+    )
+    parser.add_argument(
+        "--files-sigma",
+        default=1,
+        dest="files_sigma",
+        help="Spread of number of files created in each step",
+        type=float
+    )
+    parser.add_argument(
+        "--directories-sigma",
+        default=1,
+        dest="folders_sigma",
+        help="Spread of number of folders created in each step",
         type=float
     )
     parser.add_argument(
@@ -49,10 +63,12 @@ def cli(args=None):
         args = parser().parse_args()
     create_random_tree(
         basedir=args.basedir,
-        prob_file=args.prob_file,
-        prob_folder=args.prob_folder,
+        nfiles=args.nfiles,
+        nfolders=args.nfolders,
         repeat=args.repeat,
-        maxdepth=args.maxdepth
+        maxdepth=args.maxdepth,
+        sigma_files=args.files_sigma,
+        sigma_folders=args.folders_sigma
     )
 
 

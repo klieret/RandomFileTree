@@ -75,6 +75,9 @@ If the executable is not in your path after installation, you can also use
     randomfiletree.create_random_tree("/path/to/basedir", prob_file=2.0, prob_folder=0.5, maxdepth=5, repeat=10)
 
 
+Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
+create new files with a probability
+
 Take a look at the documentation_ to find out more about the additional functionality provided.
 
 .. _documentation: https://randomfiletree.readthedocs.io/
