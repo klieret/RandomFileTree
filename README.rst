@@ -63,6 +63,11 @@ Command line interface:
 
     randomfiletree <folder> -f <file creation probability> -d <directory creation probability> -r <repeat>
 
+Type ``randomfiletree -h`` to see all supported arguments.
+
+If the executable is not in your path after installation, you can also use
+``python3 -m randomfiletree <arguments as above>``.
+
 .. code:: python
 
     import randomfiletree

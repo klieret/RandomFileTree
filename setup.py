@@ -44,6 +44,7 @@ setup(
     },
     install_requires=[],
     license="MIT",
+    scripts=["randomfiletree/bin/randomfiletree"],
     keywords=keywords,
     description=description,
     long_description=long_description,
