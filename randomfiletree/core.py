@@ -39,18 +39,25 @@ def create_random_tree(basedir, prob_file=2, prob_folder=1, repeat=1,
         maxdepth: Maximum depth to descend into current file tree. If None,
             infinity.
     Returns:
-        None
+       (List of dirs, List of files), all as pathlib.Path objects.
     """
+    alldirs = []
+    allfiles = []
     for i in range(repeat):
         for root, dirs, files in os.walk(str(basedir)):
             if random.random() < prob_folder:
                 p = Path(root) / random_string()
                 p.mkdir(exist_ok=True)
+                alldirs.append(p)
             if random.random() < prob_file:
                 p = Path(root) / random_string()
                 p.touch(exist_ok=True)
+                allfiles.append(p)
             if maxdepth and os.path.relpath(root, str(basedir)).count(os.sep) >= maxdepth:
                 del dirs[:]
+    alldirs = list(set(alldirs))
+    allfiles = list(set(allfiles))
+    return alldirs, allfiles
 
 
 def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
