@@ -16,26 +16,30 @@ def parser():
         "--directory-probability",
         default=1,
         dest="prob_folder",
-        help="Probability to create a folder"
+        help="Probability to create a folder",
+        type=float
     )
     parser.add_argument(
         "-f",
         "--file-probability",
         default=1,
         dest="prob_file",
-        help="Probability to create a file"
+        help="Probability to create a file",
+        type=float
     )
     parser.add_argument(
         "-r",
         "--repeat",
-        default=10,
+        default=2,
         help="Number of times to traverse existing file/directory structure to "
-             "create new elements"
+             "create new elements",
+        type=int
     )
     parser.add_argument(
         "--maxdepth",
         default=None,
-        help="Maximal depth of file/directory structure to create"
+        help="Maximal depth of file/directory structure to create",
+        type=int
     )
     return parser
 

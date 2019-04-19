@@ -45,6 +45,7 @@ def create_random_tree(basedir, prob_file=2, prob_folder=1, repeat=1,
     allfiles = []
     for i in range(repeat):
         for root, dirs, files in os.walk(str(basedir)):
+            print(root)
             if random.random() < prob_folder:
                 p = Path(root) / random_string()
                 p.mkdir(exist_ok=True)

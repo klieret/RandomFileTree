@@ -20,6 +20,6 @@ class TestCli(unittest.TestCase):
     def test_parser(self):
         p = parser()
         with tempfile.TemporaryDirectory() as dirname:
-            cli(p.parse_args(dirname))
-            cli(p.parse_args(dirname, "-f", 0.5, "-d", 3, "-r", 10))
-            cli(p.parse_args(dirname, "-f", 0.5, "-d", 3, "--maxdepth", 5))
+            cli(p.parse_args([dirname]))
+            cli(p.parse_args([dirname, "-f", "0.5", "-d", "3", "-r", "3"]))
+            cli(p.parse_args([dirname, "-f", "0.5", "-d", "3", "--maxdepth", "2"]))
