@@ -13,7 +13,7 @@ RandomFileTree: Generate random file tree
    :target: https://randomfiletree.readthedocs.io/
    :alt: Documentation Status
 
-.. |Pypi Status| image:: https://badge.fury.io/py/randomfiletree.svg
+.. |Pypi Status| image:: https://badge.fury.io/py/RandomFileTree.svg
     :target: https://badge.fury.io/py/RandomFileTree
     :alt: Pypi status
 
