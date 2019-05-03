@@ -44,34 +44,34 @@ class TestTreeCreation(unittest.TestCase):
 
     def test_create_random_tree_empty(self):
         self.reset()
-        create_random_tree(self.basedir.name, -10, -10, 3, None)
+        iterative_gaussian_tree(self.basedir.name, -10, -10, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(dirs) + len(files), 0)
 
     def test_create_random_files(self):
         self.reset()
-        create_random_tree(self.basedir.name, 5, -10, 3, None)
+        iterative_gaussian_tree(self.basedir.name, 5, -10, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(dirs), 0)
         self.assertGreater(len(files), 1)
 
     def test_create_random_dirs(self):
         self.reset()
-        create_random_tree(self.basedir.name, -10, 2, 3, None)
+        iterative_gaussian_tree(self.basedir.name, -10, 2, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(files), 0)
         self.assertGreater(len(dirs), 1)
 
     def test_create_both(self):
         self.reset()
-        create_random_tree(self.basedir.name, 3, 0.5, 3, None)
+        iterative_gaussian_tree(self.basedir.name, 3, 0.5, 3, None)
         dirs, files = self.get_content()
         self.assertGreater(len(files), 1)
         self.assertGreater(len(dirs), 1)
 
     def test_limit_depth(self):
         self.reset()
-        create_random_tree(self.basedir.name, 3, 2, 5, maxdepth=3)
+        iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3)
         dirs, files = self.get_content()
         max_depth = max(map(lambda x: x.count(os.sep), dirs)) - \
                     self.basedir.name.count(os.sep)
@@ -91,7 +91,7 @@ class TestChooseSample(unittest.TestCase):
 
     def test_sample(self):
         self.reset()
-        create_random_tree(self.basedir.name, 5, 5, 4)
+        iterative_gaussian_tree(self.basedir.name, 5, 5, 4)
         dirs, files = sample_random_elements(self.basedir.name, 2, 2)
         self.assertEqual(len(set(dirs)), 2)
         self.assertEqual(len(set(files)), 2)
@@ -114,7 +114,7 @@ class TestChooseSample(unittest.TestCase):
 
     def test_choose(self):
         self.reset()
-        create_random_tree(self.basedir.name, 5, 5, 3)
+        iterative_gaussian_tree(self.basedir.name, 5, 5, 3)
         dirs, files = choose_random_elements(self.basedir.name, 5, 3)
         self.assertEqual(len(dirs), 5)
         self.assertEqual(len(files), 3)

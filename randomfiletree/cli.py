@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from randomfiletree.core import create_random_tree
+from randomfiletree.core import iterative_gaussian_tree
 
 
 def parser():
@@ -61,7 +61,7 @@ def parser():
 def cli(args=None):
     if not args:
         args = parser().parse_args()
-    create_random_tree(
+    iterative_gaussian_tree(
         basedir=args.basedir,
         nfiles=args.nfiles,
         nfolders=args.nfolders,

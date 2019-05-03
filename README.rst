@@ -57,7 +57,7 @@ of this repository:
 Usage
 -----
 
-Command line interface:
+Simple command line interface:
 
 .. code:: sh
 
@@ -72,11 +72,11 @@ If the executable is not in your path after installation, you can also use
 
     import randomfiletree
 
-    randomfiletree.create_random_tree("/path/to/basedir", nfiles=2.0, nfolders=0.5, maxdepth=5, repeat=4)
+    randomfiletree.iterative_gaussian_tree("/path/to/basedir", nfiles=2.0, nfolders=0.5, maxdepth=5, repeat=4)
 
 
 Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
-create new files with a probability
+create new files with the probabilities given in the arguments.
 
 Take a look at the documentation_ to find out more about the additional functionality provided.
 
