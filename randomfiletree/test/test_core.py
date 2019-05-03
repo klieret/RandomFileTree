@@ -73,8 +73,9 @@ class TestTreeCreation(unittest.TestCase):
         self.reset()
         iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3)
         dirs, files = self.get_content()
-        max_depth = max(map(lambda x: x.count(os.sep), dirs)) - \
-                    self.basedir.name.count(os.sep)
+        max_depth = \
+            max(map(lambda x: x.count(os.sep), dirs)) - \
+            self.basedir.name.count(os.sep)
         self.assertLessEqual(max_depth, 4)
 
 
@@ -122,6 +123,7 @@ class TestChooseSample(unittest.TestCase):
     def test_choose_raise(self):
         self.reset()
         with self.assertRaises(ValueError):
+            # noinspection PyUnusedLocal
             dirs, files = choose_random_elements(self.basedir.name, 5, 3)
 
     def test_choose_ignore(self):

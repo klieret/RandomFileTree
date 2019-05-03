@@ -6,12 +6,12 @@ from randomfiletree.core import iterative_gaussian_tree
 
 def parser():
     _ = "Create random directory and file tree."
-    parser = argparse.ArgumentParser(description=_)
-    parser.add_argument(
+    _parser = argparse.ArgumentParser(description=_)
+    _parser.add_argument(
         dest="basedir",
         help="Directory to create file/directory structure in"
     )
-    parser.add_argument(
+    _parser.add_argument(
         "-d",
         "--directories",
         default=1,
@@ -19,7 +19,7 @@ def parser():
         help="Average number of folders to create",
         type=float
     )
-    parser.add_argument(
+    _parser.add_argument(
         "-f",
         "--files",
         default=1,
@@ -27,21 +27,21 @@ def parser():
         help="Average number of files to create",
         type=float
     )
-    parser.add_argument(
+    _parser.add_argument(
         "--files-sigma",
         default=1,
         dest="files_sigma",
         help="Spread of number of files created in each step",
         type=float
     )
-    parser.add_argument(
+    _parser.add_argument(
         "--directories-sigma",
         default=1,
         dest="folders_sigma",
         help="Spread of number of folders created in each step",
         type=float
     )
-    parser.add_argument(
+    _parser.add_argument(
         "-r",
         "--repeat",
         default=2,
@@ -49,13 +49,13 @@ def parser():
              "create new elements",
         type=int
     )
-    parser.add_argument(
+    _parser.add_argument(
         "--maxdepth",
         default=None,
         help="Maximal depth of file/directory structure to create",
         type=int
     )
-    return parser
+    return _parser
 
 
 def cli(args=None):

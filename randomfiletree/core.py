@@ -25,7 +25,7 @@ def random_string(min_length=5, max_length=10) -> str:
     )
 
 
-def iterative_tree(basedir:str, nfolders_func: Callable, nfiles_func:Callable,
+def iterative_tree(basedir: str, nfolders_func: Callable, nfiles_func: Callable,
                    repeat=1, maxdepth=None) -> Tuple[List[Path], List[Path]]:
     """
     Create a random set of files and folders by repeatedly walking through the
@@ -89,18 +89,22 @@ def iterative_gaussian_tree(basedir, nfiles=2, nfolders=1, repeat=1,
         sigma_files: Spread of number of files
         min_folders: Minimal number of folders to create. Default 0.
         min_files: Minimal number of files to create. Default 0.
+
     Returns:
        (List of dirs, List of files), all as :class:`pathlib.Path` objects.
     """
+    # noinspection PyUnusedLocal
     def nfolders_func(*args):
         return max(
             min_folders, int(random.gauss(nfolders, sigma_folders))
         )
 
+    # noinspection PyUnusedLocal
     def nfiles_func(*args):
         return max(
             min_files, int(random.gauss(nfiles, sigma_files))
         )
+
     return iterative_tree(
         basedir=basedir,
         nfiles_func=nfiles_func,
@@ -118,6 +122,7 @@ def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
     Args:
         basedir: Directory to scan
         n_dirs: Number of directories to pick
+        n_files: Number of files to pick
         onfail: What to do if there are no files or folders to pick from?
             Either 'raise' (raise ValueError) or 'ignore' (return empty list)
     Returns:
