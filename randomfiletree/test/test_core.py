@@ -2,6 +2,7 @@
 
 import unittest
 import tempfile
+import pathlib
 from randomfiletree.core import *
 import random
 
@@ -28,10 +29,6 @@ class TestTreeCreation(unittest.TestCase):
     def tearDown(self):
         self.basedir.cleanup()
 
-    def reset(self):
-        self.basedir.cleanup()
-        self.basedir = tempfile.TemporaryDirectory()
-
     def get_content(self):
         alldirs = []
         allfiles = []
@@ -43,40 +40,59 @@ class TestTreeCreation(unittest.TestCase):
         return alldirs, allfiles
 
     def test_create_random_tree_empty(self):
-        self.reset()
         iterative_gaussian_tree(self.basedir.name, -10, -10, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(dirs) + len(files), 0)
 
     def test_create_random_files(self):
-        self.reset()
         iterative_gaussian_tree(self.basedir.name, 5, -10, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(dirs), 0)
         self.assertGreater(len(files), 1)
 
     def test_create_random_dirs(self):
-        self.reset()
         iterative_gaussian_tree(self.basedir.name, -10, 2, 3, None)
         dirs, files = self.get_content()
         self.assertEqual(len(files), 0)
         self.assertGreater(len(dirs), 1)
 
     def test_create_both(self):
-        self.reset()
-        iterative_gaussian_tree(self.basedir.name, 3, 0.5, 3, None)
+        iterative_gaussian_tree(self.basedir.name, 3, 3, 3, None)
         dirs, files = self.get_content()
         self.assertGreater(len(files), 1)
         self.assertGreater(len(dirs), 1)
 
     def test_limit_depth(self):
-        self.reset()
         iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3)
         dirs, files = self.get_content()
         max_depth = \
             max(map(lambda x: x.count(os.sep), dirs)) - \
             self.basedir.name.count(os.sep)
         self.assertLessEqual(max_depth, 4)
+
+    def test_fname(self):
+        SUFFIX = '.jpg'
+        iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3, filename=lambda : random_string()+SUFFIX)
+        _, files = self.get_content()
+        for file in files:
+            self.assertEqual(pathlib.Path(file).suffix, SUFFIX)
+
+    def test_payload(self):
+        CONTENT = 'testtest'
+        SUFFIX = '.txt'
+        def callback(target_dir: pathlib.Path) -> pathlib.Path:
+            while True:
+                name = target_dir / (random_string() + SUFFIX)
+                with open(name, 'w') as f:
+                    f.write(CONTENT)
+                yield name
+
+        iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3, payload=callback)
+        _, files = self.get_content()
+        for file in files:
+            self.assertEqual(pathlib.Path(file).suffix, SUFFIX)
+            with open(file, 'r') as f:
+                self.assertEqual(f.read(), CONTENT)
 
 
 class TestChooseSample(unittest.TestCase):
