@@ -71,28 +71,34 @@ class TestTreeCreation(unittest.TestCase):
         self.assertLessEqual(max_depth, 4)
 
     def test_fname(self):
-        SUFFIX = '.jpg'
-        iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3, filename=lambda : random_string()+SUFFIX)
+        suffix = '.jpg'
+        iterative_gaussian_tree(
+            self.basedir.name, 3, 2, 5, maxdepth=3,
+            filename=lambda: random_string()+suffix
+        )
         _, files = self.get_content()
         for file in files:
-            self.assertEqual(pathlib.Path(file).suffix, SUFFIX)
+            self.assertEqual(pathlib.Path(file).suffix, suffix)
 
     def test_payload(self):
-        CONTENT = 'testtest'
-        SUFFIX = '.txt'
+        content = 'testtest'
+        suffix = '.txt'
+
         def callback(target_dir: pathlib.Path) -> pathlib.Path:
             while True:
-                name = target_dir / (random_string() + SUFFIX)
+                name = target_dir / (random_string() + suffix)
                 with open(name, 'w') as f:
-                    f.write(CONTENT)
+                    f.write(content)
                 yield name
 
-        iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3, payload=callback)
+        iterative_gaussian_tree(
+            self.basedir.name, 3, 2, 5, maxdepth=3, payload=callback
+        )
         _, files = self.get_content()
         for file in files:
-            self.assertEqual(pathlib.Path(file).suffix, SUFFIX)
+            self.assertEqual(pathlib.Path(file).suffix, suffix)
             with open(file, 'r') as f:
-                self.assertEqual(f.read(), CONTENT)
+                self.assertEqual(f.read(), content)
 
 
 class TestChooseSample(unittest.TestCase):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import List, Tuple, Callable
+from typing import List, Tuple, Callable, Optional
 import os
 import random
 import string
@@ -31,7 +31,7 @@ def iterative_tree(
     repeat=1,
     maxdepth=None,
     filename=random_string,
-    payload=None
+    payload: Optional[Callable[[Path], Path]] = None
 ) -> Tuple[List[Path], List[Path]]:
     """
     Create a random set of files and folders by repeatedly walking through the
@@ -50,10 +50,13 @@ def iterative_tree(
             infinity.
         filename: Callable to generate filename. Default returns short
             random string
-        payload: Generator of files in target catalog. Overrides
-            filename argument if both are passed. Takes Path object as
-            catalog where to create file and returns Path of created file.
-            Default generates empty file
+        payload: Use this argument to generate files with content: Specify a
+            function that takes a directory ``dir`` (``Path`` object) as
+            argument, picks a name ``name``, creates the corresponding file
+            ``dir/name`` and returns ``name``. Overrides ``filename`` argument
+            if both are passed. Takes Path object as catalog where to create
+            file and returns Path of created file.
+            If this option is not specified, all created files will be empty.
 
     Returns:
         (List of dirs, List of files), all as pathlib.Path objects.
@@ -98,7 +101,7 @@ def iterative_gaussian_tree(
     min_folders=0,
     min_files=0,
     filename=random_string,
-    payload=None
+    payload: Optional[Callable[[Path], Path]] = None
 ):
     """
     Create a random set of files and folders by repeatedly walking through the
@@ -119,9 +122,13 @@ def iterative_gaussian_tree(
         min_files: Minimal number of files to create. Default 0.
         filename: Callable to generate filename. Default returns short
             random string
-        payload: Generator of files in target catalog. Overrides
-            filename argument if both are passed. Takes Path object as
-            catalog where to create file. Default generates empty file
+        payload: Use this argument to generate files with content: Specify a
+            function that takes a directory ``dir`` (``Path`` object) as
+            argument, picks a name ``name``, creates the corresponding file
+            ``dir/name`` and returns ``name``. Overrides ``filename`` argument
+            if both are passed. Takes Path object as catalog where to create
+            file and returns Path of created file.
+            If this option is not specified, all created files will be empty.
 
     Returns:
        (List of dirs, List of files), all as :class:`pathlib.Path` objects.
@@ -169,7 +176,7 @@ def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
     if n_dirs and not alldirs:
         if onfail == "raise":
             raise ValueError(
-                "{} does not have subfolders, so cannot select " "directories."
+                "{} does not have subfolders, so cannot select directories."
             )
         else:
             selected_dirs = []

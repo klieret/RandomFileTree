@@ -78,7 +78,7 @@ If the executable is not in your path after installation, you can also use
 Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
 create new files with the probabilities given in the arguments.
 
-It is possible to pass ``filename`` generating function or file generator to create files basing on some template
+It is possible to pass an optional function to generate the random filenames oneself:
 
 .. code:: python
 
@@ -88,13 +88,13 @@ It is possible to pass ``filename`` generating function or file generator to cre
     def fname():
         length = random.randint(5, 10)
         return "".join(
-        random.choice(string.ascii_uppercase + string.digits) for _ in range(length)
-        )+'.docx'
+            random.choice(string.ascii_uppercase + string.digits) for _ in range(length)
+        ) + '.docx'
 
     randomfiletree.core.iterative_gaussian_tree("/path/to/basedir", nfiles=100, nfolders=10, maxdepth=2, filename=fname)
 
-``payload`` option takes generator which creates files in target catalog and returns ``pathlib.Path`` object for the
-created one.  For example, it can be used to replicate some template files with randomized names:
+The ``payload`` optional argument can be used to generate file contents together with their names.
+For example, it can be used to replicate some template files with randomized names:
 
 .. code:: python
 
@@ -103,9 +103,9 @@ created one.  For example, it can be used to replicate some template files with 
     import randomfiletree
 
     def callback(target_dir: pathlib.Path) -> pathlib.Path:
-        SRC = "/path/to/template"
+        sourcedir = pathlib.Path("/path/to/templates/")
         sources = []
-        for srcfile in pathlib.Path(SRC).iterdir():
+        for srcfile in sourcedir.iterdir():
             with open(srcfile, 'rb') as f:
                 content = f.read()
             sources.append((srcfile.suffix, content))
@@ -115,11 +115,11 @@ created one.  For example, it can be used to replicate some template files with 
                 f.write(srcfile[1])
             yield name
 
-    randomfiletree.core.iterative_gaussian_tree("/path/to/basedir", nfiles=100, nfolders=10, maxdepth=5, repeat=4, payload=callback)
+    randomfiletree.core.iterative_gaussian_tree("/path/to/basedir", nfiles=10, nfolders=10, maxdepth=5, repeat=4, payload=callback)
 
-if both ``filename`` and ``payload`` passed, first one is ignored
+if both ``filename`` and ``payload`` passed, the first option is ignored.
 
-Take a look at the documentation_ to find out more about the additional functionality provided.
+**Take a look at the documentation_ to find out more about the additional functionality provided.**
 
 .. _documentation: https://randomfiletree.readthedocs.io/
 
