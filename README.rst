@@ -72,7 +72,13 @@ If the executable is not in your path after installation, you can also use
 
     import randomfiletree
 
-    randomfiletree.iterative_gaussian_tree("/path/to/basedir", nfiles=2.0, nfolders=0.5, maxdepth=5, repeat=4)
+    randomfiletree.iterative_gaussian_tree(
+        "/path/to/basedir",
+        nfiles=2.0,
+        nfolders=0.5,
+        maxdepth=5,
+        repeat=4
+    )
 
 
 Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
@@ -88,10 +94,17 @@ It is possible to pass an optional function to generate the random filenames one
     def fname():
         length = random.randint(5, 10)
         return "".join(
-            random.choice(string.ascii_uppercase + string.digits) for _ in range(length)
+            random.choice(string.ascii_uppercase + string.digits)
+            for _ in range(length)
         ) + '.docx'
 
-    randomfiletree.core.iterative_gaussian_tree("/path/to/basedir", nfiles=100, nfolders=10, maxdepth=2, filename=fname)
+    randomfiletree.core.iterative_gaussian_tree(
+        "/path/to/basedir",
+        nfiles=100,
+        nfolders=10,
+        maxdepth=2,
+        filename=fname
+    )
 
 The ``payload`` optional argument can be used to generate file contents together with their names.
 For example, it can be used to replicate some template files with randomized names:
@@ -115,7 +128,14 @@ For example, it can be used to replicate some template files with randomized nam
                 f.write(srcfile[1])
             yield name
 
-    randomfiletree.core.iterative_gaussian_tree("/path/to/basedir", nfiles=10, nfolders=10, maxdepth=5, repeat=4, payload=callback)
+    randomfiletree.core.iterative_gaussian_tree(
+        "/path/to/basedir",
+        nfiles=10,
+        nfolders=10,
+        maxdepth=5,
+        repeat=4,
+        payload=callback
+    )
 
 if both ``filename`` and ``payload`` passed, the first option is ignored.
 
