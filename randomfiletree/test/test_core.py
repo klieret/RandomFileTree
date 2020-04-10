@@ -86,10 +86,10 @@ class TestTreeCreation(unittest.TestCase):
 
         def callback(target_dir: pathlib.Path) -> pathlib.Path:
             while True:
-                name = target_dir / (random_string() + suffix)
-                with open(name, 'w') as f:
+                path = target_dir / (random_string() + suffix)
+                with path.open('w') as f:
                     f.write(content)
-                yield name
+                yield path
 
         iterative_gaussian_tree(
             self.basedir.name, 3, 2, 5, maxdepth=3, payload=callback

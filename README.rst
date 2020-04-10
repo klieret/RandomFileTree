@@ -123,10 +123,10 @@ For example, it can be used to replicate some template files with randomized nam
                 content = f.read()
             sources.append((srcfile.suffix, content))
         for srcfile in itertools.cycle(sources):
-            name = target_dir / (randomfiletree.core.random_string() + srcfile[0])
-            with open(name, 'wb') as f:
+            path = target_dir / (randomfiletree.core.random_string() + srcfile[0])
+            with path.open('wb') as f:
                 f.write(srcfile[1])
-            yield name
+            yield path
 
     randomfiletree.core.iterative_gaussian_tree(
         "/path/to/basedir",
