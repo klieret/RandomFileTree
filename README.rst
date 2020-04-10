@@ -139,7 +139,7 @@ For example, it can be used to replicate some template files with randomized nam
 
 if both ``filename`` and ``payload`` passed, the first option is ignored.
 
-**Take a look at the documentation_ to find out more about the additional functionality provided.**
+Take a look at the documentation_ to find out more about the additional functionality provided.
 
 .. _documentation: https://randomfiletree.readthedocs.io/
 
