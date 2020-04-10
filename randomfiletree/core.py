@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from typing import List, Tuple, Callable, Optional
+from typing import List, Tuple, Callable, Optional, Union
 import os
 import random
 import string
-from pathlib import Path
+from pathlib import Path, PurePath
 
 
 def random_string(min_length=5, max_length=10) -> str:
@@ -25,7 +25,7 @@ def random_string(min_length=5, max_length=10) -> str:
 
 
 def iterative_tree(
-    basedir: str,
+    basedir: Union[str, PurePath],
     nfolders_func: Callable,
     nfiles_func: Callable,
     repeat=1,
@@ -63,6 +63,8 @@ def iterative_tree(
     """
     alldirs = []
     allfiles = []
+    basedir = Path(basedir)
+    basedir.mkdir(parents=True, exist_ok=True)
     for i in range(repeat):
         for root, dirs, files in os.walk(str(basedir)):
             depth = os.path.relpath(root, str(basedir)).count(os.sep)
@@ -91,7 +93,7 @@ def iterative_tree(
 
 
 def iterative_gaussian_tree(
-    basedir,
+    basedir: Union[str, PurePath],
     nfiles=2,
     nfolders=1,
     repeat=1,
