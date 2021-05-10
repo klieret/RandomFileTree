@@ -55,4 +55,5 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Utilities"
     ],
+    include_package_data=True,
 )
