@@ -57,6 +57,13 @@ of this repository:
 Usage
 -----
 
+Take a look at the documentation_ to for the complete picture.
+
+.. _documentation: https://randomfiletree.readthedocs.io/
+
+Command line interface
+^^^^^^^^^^^^^^^^^^^^^^
+
 Simple command line interface:
 
 .. code:: sh
@@ -67,6 +74,9 @@ Type ``randomfiletree -h`` to see all supported arguments.
 
 If the executable is not in your path after installation, you can also use
 ``python3 -m randomfiletree <arguments as above>``.
+
+Python API
+^^^^^^^^^^
 
 .. code:: python
 
@@ -83,6 +93,9 @@ If the executable is not in your path after installation, you can also use
 
 Randomfiletree will now crawl through all directories in ``/path/to/basedir`` and
 create new files with the probabilities given in the arguments.
+
+Advanced examples
+^^^^^^^^^^^^^^^^^
 
 It is possible to pass an optional function to generate the random filenames oneself:
 
@@ -139,10 +152,6 @@ For example, it can be used to replicate some template files with randomized nam
 
 if both ``filename`` and ``payload`` passed, the first option is ignored.
 
-Take a look at the documentation_ to find out more about the additional functionality provided.
-
-.. _documentation: https://randomfiletree.readthedocs.io/
-
 License
 -------
 
@@ -151,4 +160,3 @@ This software is lienced under the `MIT license`_.
 .. _MIT  license: https://github.com/klieret/ankipandas/blob/master/LICENSE.txt
 
 .. end-body
-
