@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 
-# std
-from distutils.core import setup
 # noinspection PyUnresolvedReferences
-import setuptools  # see below (1)
+import setuptools
 from pathlib import Path
-
-# (1) see https://stackoverflow.com/questions/8295644/
-# Without this import, install_requires won't work.
-
 
 keywords = [
     "testing",
@@ -29,7 +23,7 @@ with (this_dir / "README.rst").open() as fh:
 with (this_dir / "randomfiletree" / "version.txt").open() as vf:
     version = vf.read()
 
-setup(
+setuptools.setup(
     name='RandomFileTree',
     version=version,
     packages=packages,
@@ -44,7 +38,9 @@ setup(
     },
     install_requires=[],
     license="MIT",
-    scripts=["randomfiletree/bin/randomfiletree"],
+    entry_points={
+        "console_scripts": ["randomfiletree=randomfiletree.cli:cli"]
+    },
     keywords=keywords,
     description=description,
     long_description=long_description,
