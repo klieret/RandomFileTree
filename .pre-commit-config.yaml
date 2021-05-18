@@ -1,0 +1,34 @@
+repos:
+-   repo: https://github.com/psf/black
+    rev: 21.5b1
+    hooks:
+    -   id: black
+        language_version: python3.7
+        args: ["-l", "80", "-t", "py34"]
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-case-conflict
+    -   id: check-merge-conflict
+    -   id: detect-private-key
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/PyCQA/flake8
+    rev: '3.9.2'  # pick a git hash / tag to point to
+    hooks:
+    -   id: flake8
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v0.812'  # Use the sha / tag you want to point at
+    hooks:
+    -   id: mypy
+        exclude: "conftest.py|^doc"
+-   repo: https://github.com/codespell-project/codespell
+    rev: 'v2.0.0'
+    hooks:
+    -   id: codespell
+        args: ["-I", "codespell.txt"]
+
+ci:
+    autoupdate_schedule: monthly

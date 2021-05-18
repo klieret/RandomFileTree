@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 
+# std
 import unittest
 import tempfile
 import pathlib
-from randomfiletree.core import *
 import random
+import os
+from typing import Generator
+
+# ours
+from randomfiletree.core import (
+    iterative_gaussian_tree,
+    random_string,
+    sample_random_elements,
+    choose_random_elements,
+)
 
 random.seed(0)
 
@@ -65,29 +75,35 @@ class TestTreeCreation(unittest.TestCase):
     def test_limit_depth(self):
         iterative_gaussian_tree(self.basedir.name, 3, 2, 5, maxdepth=3)
         dirs, files = self.get_content()
-        max_depth = \
-            max(map(lambda x: x.count(os.sep), dirs)) - \
-            self.basedir.name.count(os.sep)
+        max_depth = max(
+            map(lambda x: x.count(os.sep), dirs)
+        ) - self.basedir.name.count(os.sep)
         self.assertLessEqual(max_depth, 4)
 
     def test_fname(self):
-        suffix = '.jpg'
+        suffix = ".jpg"
         iterative_gaussian_tree(
-            self.basedir.name, 3, 2, 5, maxdepth=3,
-            filename=lambda: random_string()+suffix
+            self.basedir.name,
+            3,
+            2,
+            5,
+            maxdepth=3,
+            filename=lambda: random_string() + suffix,
         )
         _, files = self.get_content()
         for file in files:
             self.assertEqual(pathlib.Path(file).suffix, suffix)
 
     def test_payload(self):
-        content = 'testtest'
-        suffix = '.txt'
+        content = "testtest"
+        suffix = ".txt"
 
-        def callback(target_dir: pathlib.Path) -> pathlib.Path:
+        def callback(
+            target_dir: pathlib.Path,
+        ) -> Generator[pathlib.Path, None, None]:
             while True:
                 path = target_dir / (random_string() + suffix)
-                with path.open('w') as f:
+                with path.open("w") as f:
                     f.write(content)
                 yield path
 
@@ -97,7 +113,7 @@ class TestTreeCreation(unittest.TestCase):
         _, files = self.get_content()
         for file in files:
             self.assertEqual(pathlib.Path(file).suffix, suffix)
-            with open(file, 'r') as f:
+            with open(file, "r") as f:
                 self.assertEqual(f.read(), content)
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import List, Tuple, Callable, Optional, Union
+from typing import List, Tuple, Callable, Optional, Union, Generator
 import os
 import random
 import string
@@ -20,7 +20,8 @@ def random_string(min_length=5, max_length=10) -> str:
     """
     length = random.randint(min_length, max_length)
     return "".join(
-        random.choice(string.ascii_uppercase + string.digits) for _ in range(length)
+        random.choice(string.ascii_uppercase + string.digits)
+        for _ in range(length)
     )
 
 
@@ -31,7 +32,7 @@ def iterative_tree(
     repeat=1,
     maxdepth=None,
     filename=random_string,
-    payload: Optional[Callable[[Path], Path]] = None
+    payload: Optional[Callable[[Path], Generator[Path, None, None]]] = None,
 ) -> Tuple[List[Path], List[Path]]:
     """
     Create a random set of files and folders by repeatedly walking through the
@@ -53,9 +54,9 @@ def iterative_tree(
         payload: Use this argument to generate files with content: Specify a
             function that takes a directory ``dir`` (``Path`` object) as
             argument, picks a name ``name``, creates the corresponding file
-            ``dir/name`` and returns ``name``. Overrides ``filename`` argument
+            ``dir/name`` and yields ``name``. Overrides ``filename`` argument
             if both are passed. Takes Path object as catalog where to create
-            file and returns Path of created file.
+            file and yields Path of created file.
             If this option is not specified, all created files will be empty.
 
     Returns:
@@ -103,7 +104,7 @@ def iterative_gaussian_tree(
     min_folders=0,
     min_files=0,
     filename=random_string,
-    payload: Optional[Callable[[Path], Path]] = None
+    payload: Optional[Callable[[Path], Generator[Path, None, None]]] = None,
 ):
     """
     Create a random set of files and folders by repeatedly walking through the
@@ -127,7 +128,7 @@ def iterative_gaussian_tree(
         payload: Use this argument to generate files with content: Specify a
             function that takes a directory ``dir`` (``Path`` object) as
             argument, picks a name ``name``, creates the corresponding file
-            ``dir/name`` and returns ``name``. Overrides ``filename`` argument
+            ``dir/name`` and yields ``name``. Overrides ``filename`` argument
             if both are passed. Takes Path object as catalog where to create
             file and returns Path of created file.
             If this option is not specified, all created files will be empty.
@@ -150,7 +151,7 @@ def iterative_gaussian_tree(
         repeat=repeat,
         maxdepth=maxdepth,
         filename=filename,
-        payload=payload
+        payload=payload,
     )
 
 

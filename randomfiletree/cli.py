@@ -8,8 +8,7 @@ def parser():
     _ = "Create random directory and file tree."
     _parser = argparse.ArgumentParser(description=_)
     _parser.add_argument(
-        dest="basedir",
-        help="Directory to create file/directory structure in"
+        dest="basedir", help="Directory to create file/directory structure in"
     )
     _parser.add_argument(
         "-d",
@@ -17,7 +16,7 @@ def parser():
         default=1,
         dest="nfolders",
         help="Average number of folders to create",
-        type=float
+        type=float,
     )
     _parser.add_argument(
         "-f",
@@ -25,35 +24,35 @@ def parser():
         default=1,
         dest="nfiles",
         help="Average number of files to create",
-        type=float
+        type=float,
     )
     _parser.add_argument(
         "--files-sigma",
         default=1,
         dest="files_sigma",
         help="Spread of number of files created in each step",
-        type=float
+        type=float,
     )
     _parser.add_argument(
         "--directories-sigma",
         default=1,
         dest="folders_sigma",
         help="Spread of number of folders created in each step",
-        type=float
+        type=float,
     )
     _parser.add_argument(
         "-r",
         "--repeat",
         default=2,
         help="Number of times to traverse existing file/directory structure to "
-             "create new elements",
-        type=int
+        "create new elements",
+        type=int,
     )
     _parser.add_argument(
         "--maxdepth",
         default=None,
         help="Maximal depth of file/directory structure to create",
-        type=int
+        type=int,
     )
     return _parser
 
@@ -68,7 +67,7 @@ def cli(args=None):
         repeat=args.repeat,
         maxdepth=args.maxdepth,
         sigma_files=args.files_sigma,
-        sigma_folders=args.folders_sigma
+        sigma_folders=args.folders_sigma,
     )
 
 

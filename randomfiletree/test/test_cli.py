@@ -15,11 +15,15 @@ class TestCli(unittest.TestCase):
 
     def test_cli_module(self):
         with tempfile.TemporaryDirectory() as dirname:
-           subprocess.run(["python3", "-m", "randomfiletree", dirname])
+            subprocess.run(["python3", "-m", "randomfiletree", dirname])
 
     def test_parser(self):
         p = parser()
         with tempfile.TemporaryDirectory() as dirname:
             cli(p.parse_args([dirname]))
             cli(p.parse_args([dirname, "-f", "0.5", "-d", "3", "-r", "3"]))
-            cli(p.parse_args([dirname, "-f", "0.5", "-d", "3", "--maxdepth", "2"]))
+            cli(
+                p.parse_args(
+                    [dirname, "-f", "0.5", "-d", "3", "--maxdepth", "2"]
+                )
+            )
