@@ -1,5 +1,8 @@
 # RandomFileTree: Generate random file tree
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 [![Build
 Status](https://travis-ci.org/klieret/RandomFileTree.svg?branch=master)](https://travis-ci.org/klieret/RandomFileTree)
 [![Coveralls](https://coveralls.io/repos/github/klieret/RandomFileTree/badge.svg?branch=master)](https://coveralls.io/github/klieret/RandomFileTree?branch=master)
@@ -128,8 +131,20 @@ randomfiletree.core.iterative_gaussian_tree(
 
 if both `filename` and `payload` passed, the first option is ignored.
 
-License
-=======
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## License
 
 This software is lienced under the [MIT
 license](https://github.com/klieret/ankipandas/blob/master/LICENSE.txt).
