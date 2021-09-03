@@ -6,13 +6,15 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![Build
-Status](https://travis-ci.org/klieret/RandomFileTree.svg?branch=master)](https://travis-ci.org/klieret/RandomFileTree)
+[![Build Status](https://travis-ci.org/klieret/RandomFileTree.svg?branch=master)](https://travis-ci.org/klieret/RandomFileTree)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/klieret/RandomFileTree/master.svg)](https://results.pre-commit.ci/latest/github/klieret/RandomFileTree/master)
 [![Coveralls](https://coveralls.io/repos/github/klieret/RandomFileTree/badge.svg?branch=master)](https://coveralls.io/github/klieret/RandomFileTree?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/randomfiletree/badge/?version=latest)](https://randomfiletree.readthedocs.io/)
 [![Pypi status](https://badge.fury.io/py/RandomFileTree.svg)](https://badge.fury.io/py/RandomFileTree)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 [![Gitter](https://img.shields.io/gitter/room/RandomFileTree/community.svg)](https://gitter.im/RandomFileTree/community)
 [![License](https://img.shields.io/github/license/klieret/RandomFileTree.svg)](https://github.com/klieret/RandomFileTree/blob/master/LICENSE.txt)
+[![PR welcome](https://img.shields.io/badge/PR-Welcome-%23FF8300.svg)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
 
 ## Description
 
