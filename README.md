@@ -22,7 +22,7 @@ Create a random file and directory tree/structure for testing purposes.
 
 ## Installation
 
-`AnkiPandas` can be installed with the python package manager:
+`randomfiletree` can be installed with the python package manager:
 
 ```sh
 pip3 install randomfiletree
@@ -30,7 +30,7 @@ pip3 install randomfiletree
 
 For a local installation, you might want to use the `--user` switch of
 `pip`. You can also update your current installation with
-`pip3 install --upgrade ankipandas`.
+`pip3 install --upgrade randomfiletree`.
 
 For the latest development version you can also work from a cloned
 version of this repository:
@@ -162,8 +162,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## License
-
-This software is lienced under the [MIT
-license](https://github.com/klieret/ankipandas/blob/master/LICENSE.txt).
