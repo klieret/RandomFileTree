@@ -11,7 +11,7 @@ from randomfiletree.cli import parser, cli
 class TestCli(unittest.TestCase):
     def test_cli(self):
         with tempfile.TemporaryDirectory() as dirname:
-            subprocess.run(["randomfiletree", dirname], shell=True)
+            subprocess.run(["randomfiletree", dirname])
 
     def test_cli_module(self):
         with tempfile.TemporaryDirectory() as dirname:
