@@ -40,7 +40,7 @@ pip3 install --user .
 
 ## Usage
 Take a look at the
-[documentation](https://randomfiletree.readthedocs.io/) to for the
+[documentation](https://randomfiletree.readthedocs.io/) for the
 complete picture.
 
 ### Command line interface
