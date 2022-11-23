@@ -35,6 +35,7 @@ with readme_target.open("w") as outf:
             [
                 "Readme",
                 "======",
+                "",
             ]
         )
     )
@@ -42,6 +43,8 @@ with readme_target.open("w") as outf:
     for line in readme_path.read_text().split("\n"):
         if line.startswith("# "):
             # Skip title, because we now use "Readme"
+            continue
+        if "<div" in line or "</div" in line:
             continue
         lines.append(line)
     outf.write("\n".join(lines))
@@ -74,10 +77,9 @@ suppress_warnings = ["image.nonlocal_uri"]
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.todo",
-    "sphinx.ext.coverage",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
+    "recommonmark",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -86,8 +88,7 @@ templates_path = ["_templates"]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = ".rst"
+source_suffix = [".rst", ".md"]
 
 # The encoding of source files.
 #
