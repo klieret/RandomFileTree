@@ -17,6 +17,9 @@
 
 Create a random file and directory tree/structure for testing purposes.
 
+This is done in an iterative fashion: For every iteration, files and folders
+are created based on set probabilities in all subfolders of the target folder.
+
 ## Installation
 
 `randomfiletree` can be installed with the python package manager:

@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
+"""Create random directory and file tree.
+
+This is done in an iterative fashion: For every iteration, files and folders
+are created based on set probabilities in all subfolders of the target folder.
+"""
+
 import argparse
 from randomfiletree.core import iterative_gaussian_tree
 
 
 def parser():
-    _ = "Create random directory and file tree."
-    _parser = argparse.ArgumentParser(description=_)
+    _parser = argparse.ArgumentParser(description=__doc__)
     _parser.add_argument(
         dest="basedir", help="Directory to create file/directory structure in"
     )
@@ -15,7 +20,8 @@ def parser():
         "--directories",
         default=1,
         dest="nfolders",
-        help="Average number of folders to create",
+        help="Average number of folders to create in every subfolder of the "
+        " target folder in every iteration",
         type=float,
     )
     _parser.add_argument(
@@ -23,7 +29,8 @@ def parser():
         "--files",
         default=1,
         dest="nfiles",
-        help="Average number of files to create",
+        help="Average number of files to create in every subfolder of the "
+        "target folder in every iteration",
         type=float,
     )
     _parser.add_argument(
