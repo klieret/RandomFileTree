@@ -51,13 +51,18 @@ complete picture.
 Simple command line interface:
 
 ```sh
-randomfiletree <folder> -f <file creation probability> -d <directory creation probability> -r <repeat>
+randomfiletree <output folder> \
+    -f <average number of files> \
+    -d <average number of folders> \
+    -r <repeat>
 ```
 
-Type `randomfiletree -h` to see all supported arguments.
+For example, using the options `-f 3 -d 2 -r 2`, on average 2 folders and 3
+files are created in the first iteration, and another 2 folders and 3 files are
+added to the output directory and each of its subdirectories in the second
+iteration.
 
-If the executable is not in your path after installation, you can also
-use `python3 -m randomfiletree <arguments as above>`.
+Type `randomfiletree -h` to see all supported arguments.
 
 ## Python API
 
