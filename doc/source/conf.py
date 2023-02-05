@@ -111,7 +111,7 @@ author = "Kilian Lieret"
 this_dir = pathlib.Path(__file__).resolve().parent
 with (this_dir / ".." / ".." / "randomfiletree" / "version.txt").open() as vf:
     version = vf.read()
-print("Version as read from version.txt: '{}'".format(version))
+print(f"Version as read from version.txt: '{version}'")
 
 # The short X.Y version.
 # version = 'v1.0.0'

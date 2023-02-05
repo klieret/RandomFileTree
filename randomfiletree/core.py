@@ -179,7 +179,8 @@ def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
     if n_dirs and not alldirs:
         if onfail == "raise":
             raise ValueError(
-                "{} does not have subfolders, so cannot select directories."
+                f"{basedir} does not have subfolders, so cannot select "
+                "directories."
             )
         else:
             selected_dirs = []
@@ -188,7 +189,8 @@ def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
     if n_files and not allfiles:
         if onfail == "raise":
             raise ValueError(
-                "{} does not contain any files, so cannot select random files."
+                f"{basedir} does not contain any files, so cannot select random "
+                "files."
             )
         elif onfail == "ignore":
             selected_files = []
