@@ -8,9 +8,10 @@ are created based on set probabilities in all subfolders of the target folder.
 
 import argparse
 from randomfiletree.core import iterative_gaussian_tree
+from typing import no_type_check
 
 
-def parser():
+def parser() -> argparse.ArgumentParser:
     _parser = argparse.ArgumentParser(description=__doc__)
     _parser.add_argument(
         dest="basedir", help="Directory to create file/directory structure in"
@@ -64,6 +65,7 @@ def parser():
     return _parser
 
 
+@no_type_check  # TODO rewrite function to make mypy happy with Optional args
 def cli(args=None):
     if not args:
         args = parser().parse_args()

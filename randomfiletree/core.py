@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 
-from typing import List, Tuple, Callable, Optional, Union, Generator
+from typing import (
+    List,
+    Tuple,
+    Callable,
+    Optional,
+    Union,
+    Generator,
+    no_type_check,
+)
 import os
 import random
 import string
 from pathlib import Path, PurePath
 
 
-def random_string(min_length=5, max_length=10) -> str:
+def random_string(min_length: int = 5, max_length: int = 10) -> str:
     """
     Get a random string.
 
@@ -29,9 +37,9 @@ def iterative_tree(
     basedir: Union[str, PurePath],
     nfolders_func: Callable,
     nfiles_func: Callable,
-    repeat=1,
-    maxdepth=None,
-    filename=random_string,
+    repeat: int = 1,
+    maxdepth: Optional[int] = None,
+    filename: Callable = random_string,
     payload: Optional[Callable[[Path], Generator[Path, None, None]]] = None,
 ) -> Tuple[List[Path], List[Path]]:
     """
@@ -95,17 +103,17 @@ def iterative_tree(
 
 def iterative_gaussian_tree(
     basedir: Union[str, PurePath],
-    nfiles=2,
-    nfolders=1,
-    repeat=1,
-    maxdepth=None,
-    sigma_folders=1,
-    sigma_files=1,
-    min_folders=0,
-    min_files=0,
-    filename=random_string,
+    nfiles: int = 2,
+    nfolders: int = 1,
+    repeat: int = 1,
+    maxdepth: Optional[int] = None,
+    sigma_folders: int = 1,
+    sigma_files: int = 1,
+    min_folders: int = 0,
+    min_files: int = 0,
+    filename: Callable = random_string,
     payload: Optional[Callable[[Path], Generator[Path, None, None]]] = None,
-):
+) -> Tuple[List[Path], List[Path]]:
     """
     Create a random set of files and folders by repeatedly walking through the
     current tree and creating random files or subfolders (the number of files
@@ -137,10 +145,12 @@ def iterative_gaussian_tree(
        (List of dirs, List of files), all as :class:`pathlib.Path` objects.
     """
     # noinspection PyUnusedLocal
+    @no_type_check
     def nfolders_func(*args):
         return max(min_folders, int(random.gauss(nfolders, sigma_folders)))
 
     # noinspection PyUnusedLocal
+    @no_type_check
     def nfiles_func(*args):
         return max(min_files, int(random.gauss(nfiles, sigma_files)))
 
@@ -155,7 +165,9 @@ def iterative_gaussian_tree(
     )
 
 
-def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
+def choose_random_elements(
+    basedir: str, n_dirs: int, n_files: int, onfail: str = "raise"
+) -> Tuple[List[Path], List[Path]]:
     """
     Select random files and directories. If all directories and files must be
     unique, use sample_random_elements instead.
@@ -201,7 +213,9 @@ def choose_random_elements(basedir, n_dirs, n_files, onfail="raise"):
     return selected_dirs, selected_files
 
 
-def sample_random_elements(basedir, n_dirs, n_files, onfail="raise"):
+def sample_random_elements(
+    basedir: str, n_dirs: int, n_files: int, onfail: str = "raise"
+) -> Tuple[List[Path], List[Path]]:
     """
     Select random distinct files and directories. If the directories and files
     do not have to be distinct, use choose_random_elements instead.
