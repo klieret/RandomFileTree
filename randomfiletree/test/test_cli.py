@@ -9,15 +9,15 @@ from randomfiletree.cli import parser, cli
 
 
 class TestCli(unittest.TestCase):
-    def test_cli(self):
+    def test_cli(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             subprocess.run(["randomfiletree", dirname])
 
-    def test_cli_module(self):
+    def test_cli_module(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             subprocess.run(["python3", "-m", "randomfiletree", dirname])
 
-    def test_parser(self):
+    def test_parser(self) -> None:
         p = parser()
         with tempfile.TemporaryDirectory() as dirname:
             cli(p.parse_args([dirname]))
