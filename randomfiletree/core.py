@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
 from typing import (
-    List, Tuple, Callable, Optional, Union, Generator, no_type_check
+    List,
+    Tuple,
+    Callable,
+    Optional,
+    Union,
+    Generator,
+    no_type_check,
 )
 import os
 import random
@@ -158,9 +164,10 @@ def iterative_gaussian_tree(
         payload=payload,
     )
 
-def choose_random_elements(basedir: str, n_dirs: int, n_files: int,
-                           onfail: str = "raise") -> Tuple[
-    List[Path], List[Path]]:
+
+def choose_random_elements(
+    basedir: str, n_dirs: int, n_files: int, onfail: str = "raise"
+) -> Tuple[List[Path], List[Path]]:
     """
     Select random files and directories. If all directories and files must be
     unique, use sample_random_elements instead.
@@ -203,9 +210,10 @@ def choose_random_elements(basedir: str, n_dirs: int, n_files: int,
         selected_files = [random.choice(allfiles) for _ in range(n_files)]
     return selected_dirs, selected_files
 
-def sample_random_elements(basedir: str, n_dirs: int, n_files: int,
-                           onfail: str = "raise") -> Tuple[
-    List[Path], List[Path]]:
+
+def sample_random_elements(
+    basedir: str, n_dirs: int, n_files: int, onfail: str = "raise"
+) -> Tuple[List[Path], List[Path]]:
     """
     Select random distinct files and directories. If the directories and files
     do not have to be distinct, use choose_random_elements instead.

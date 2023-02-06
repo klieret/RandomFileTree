@@ -64,6 +64,7 @@ def parser() -> argparse.ArgumentParser:
     )
     return _parser
 
+
 @no_type_check  # TODO rewrite function to make mypy happy with Optional args
 def cli(args=None):
     if not args:
