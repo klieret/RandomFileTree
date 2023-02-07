@@ -144,6 +144,7 @@ def iterative_gaussian_tree(
     Returns:
        (List of dirs, List of files), all as :class:`pathlib.Path` objects.
     """
+
     # noinspection PyUnusedLocal
     @no_type_check
     def nfolders_func(*args):
